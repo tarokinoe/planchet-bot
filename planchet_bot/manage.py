@@ -1,6 +1,6 @@
 import typer
 
-from planchet_bot.bot import updater
+from planchet_bot.app import updater
 
 
 app = typer.Typer()
