@@ -3,7 +3,7 @@ import logging
 from telegram.ext import Updater, CommandHandler
 
 from planchet_bot.common.views import get_chat_id, start
-from planchet_bot.project.settings import settings
+from planchet_bot.dependencies import get_settings
 from planchet_bot.weather.views import get_weather
 
 logging.basicConfig(
@@ -11,8 +11,9 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+settings = get_settings()
 updater = Updater(
-    token=settings.TELEGRAM_BOT_TOKEN,
+    token=settings.telegram_bot_token,
     use_context=True
 )
 dispatcher = updater.dispatcher

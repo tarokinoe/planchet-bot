@@ -1,14 +1,17 @@
+from planchet_bot import dependencies
 from planchet_bot.dependencies import get_weather_service
-from planchet_bot.project.settings import settings
 from telegram import Update
 from telegram.ext import CallbackContext
+
+
+settings = dependencies.get_settings()
 
 
 def get_weather(update: Update, context: CallbackContext):
     weather_service = get_weather_service()
     weather = weather_service.get(
-        lat=settings.WEATHER['location_lat'],
-        lon=settings.WEATHER['location_lon'],
+        lat=settings.weather_api.location_lat,
+        lon=settings.weather_api.location_lon,
     )
     current = weather.current
     today = weather.daily[0]
